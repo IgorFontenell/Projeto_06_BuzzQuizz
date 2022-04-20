@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
+@media (max-width: 735px) {
+
+    .container {
+        background-color: #E5E5E5;
+        width: 100%;
+        min-height: 100vh;
+    }
+    .topo {
+        width: 100%;
+        height: 70px;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   h1 {
+        color: #FFFFFF;
+        font-size: 37px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+    }
+    .quizzesPublicos {
+        margin-top: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .tituloGeral {
+        color: #000000;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .quizzesPublicos li {
+        margin: 15px 0px;
+        display: flex;
+        border-radius: 5px;
+        position: relative;
+    }
+    .quizzesPublicos img {
+        border-radius: 5px;
+        opacity: 1;
+        background-size: cover;
+    }
+    
+    .tituloQuizz {
+        color: #FFFFFF;
+        font-size: 18px;
+        font-family: 'Roboto', sans-serif;
+        display: inline-block;
+        position: absolute;
+        left: 5%;
+        bottom: 10px;
+        
+    }
+    .gradiente {
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    }
+    
+
+}
