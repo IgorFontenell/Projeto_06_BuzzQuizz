@@ -5,6 +5,138 @@
 .escondido  {
     display: none;
 }
+a {
+    text-decoration: none;
+}
+
+.topo {
+    width: 100%;
+    height: 70px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px  black;
+}
+.quizzes {
+    width: 1051px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.container {
+    background-color: #FFFFFF;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    color: #FFFFFF;
+    font-size: 37px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+.quizzesUsuario {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 100%;
+    
+}
+.quizzesUsuario ion-icon {
+    color: #EC362D;
+    font-size: 30px;
+    margin-left: 10px;
+}
+.topo-quizzes-usuario {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.quizzesVazio{
+    width: 100%;
+    height: 180px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #D4D4D4;
+}
+.texto_create {
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 10px;
+    font-size: 20px;
+    color: #b9b9b9;
+}
+.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    margin-top: 25px;
+    height: 40px;
+    width: 160px;
+}
+.botao span {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #EC362D;
+}
+
+.quizzesPublicos {
+    margin-top: 15px;
+}
+ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.tituloGeral {
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+li {
+    margin: 15px 5px;
+    width: 340px;
+    height: 180;
+    display: flex;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    position: relative;
+}
+img {
+    border-radius: 5px;
+    background-size: cover;
+}
+
+.tituloQuizz {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+    
+}
+.gradiente {
+    background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    width: 100%;
+    height: 50%;
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    border-radius: 5px;
+}
 
 @media (max-width: 735px) {
 
@@ -22,6 +154,7 @@
         box-shadow: 0px 0px 10px  black;
     }
     .quizzes {
+        width: 100%;
         margin-left: 15px;
         margin-right: 15px;
     }
@@ -30,6 +163,11 @@
         width: 100%;
         min-height: 100vh;
     }
+    ul {
+        flex-direction: column;
+        flex-wrap: none;
+    }
+    
    h1 {
         color: #FFFFFF;
         font-size: 37px;
@@ -37,9 +175,7 @@
         font-family: 'Roboto', sans-serif;
     }
     .quizzesUsuario {
-        margin-top: 25px;
-        margin-bottom: 25px;
-        width: 100%;
+        margin: 25px 15px;
         
     }
     .quizzesUsuario ion-icon {
@@ -52,9 +188,8 @@
         align-items: center;
     }
     .quizzesVazio{
-        width: 100%;
-        height: 200px;
-        margin-bottom: 15px;
+        width: 90%;
+        height: 180px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -89,6 +224,8 @@
     
     .quizzesPublicos {
         margin-top: 15px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
     .tituloGeral {
         color: #000000;
@@ -98,6 +235,8 @@
     }
     li {
         margin: 15px 0px;
+        width: 100%;
+        height: auto;
         display: flex;
         border-radius: 5px;
         position: relative;
@@ -105,7 +244,8 @@
     img {
         border-radius: 5px;
         background-size: cover;
-        
+        width: 100%;
+        height: auto;
     }
     
     .tituloQuizz {
