@@ -132,3 +132,84 @@
     }
     
 }
+
+
+/* INICIO DA PAGINA 2 (PEDRO) */
+h6{
+    color: black;
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-weight: 700;
+}
+.container2{
+    background-color: #E5E5E5;
+}
+.banner{
+    width: 100%;
+    height: 140px;
+    position: relative;
+}
+.banner img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.banner span{
+    font-size: 19px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    color: white;
+}
+.gradientebanner{
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pergunta1{
+    background-color: white;
+    width: 100%;
+    height: 500px;
+    padding: 10px;
+    margin-top: 25px;
+}
+
+.titulopergunta{
+    background-color: #434CA0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 90px;
+}
+.titulopergunta span{
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
+.respostas{
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content : center;
+    align-items: center;
+
+    margin-top: 20px;
+}
+.resposta{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.resposta img{
+    object-fit: cover;
+    width: 200px;
+    height: 150px;    
+}
