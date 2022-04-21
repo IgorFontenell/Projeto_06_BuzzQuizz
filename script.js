@@ -22,3 +22,54 @@ function quizzesUsuarioLayout () {
     }
 }
 quizzesUsuarioLayout();
+
+
+// Vamos pegar os quizzes que estão no servidor e coloca-los no html
+function pegarQuizzes () {
+
+let requisicao = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes");
+requisicao.then(colocarQuizzes);
+requisicao.catch(erroPegarMsg);
+
+
+}
+pegarQuizzes();
+
+
+function colocarQuizzes (response) {
+
+    let quizzes = response.data;
+    console.log(quizzes);
+    for (let i = 0; i < quizzes.length; i++ ) {
+        let procuracao = document.querySelector(".quizzesPublicos").querySelector("ul")
+        procuracao.innerHTML = procuracao.innerHTML + `
+                    <a href="index.html" target="_blanck">
+                            <li>
+                                <div class="gradiente"></div>
+                                    <img src=${quizzes[i].image} alt="Imagem dos Simpsons" width="340px" height="180px"/>
+                                    <span class="tituloQuizz">${quizzes[i].title}</span>
+                            </li>
+                        </a>`
+
+
+    }
+
+}
+function erroPegarMsg() {
+
+    alert("Alguma coisa deu errado na hora de pegar as mensagens");
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+{}
