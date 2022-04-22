@@ -58,12 +58,25 @@ function colocarQuizzes (response) {
 
 function erroPegarMsg() {
     alert("Alguma coisa deu errado na hora de pegar as mensagens");
-    
+
 }
 
 
+function criarQuizzSection(){
 
+    const telaPrincipal = document.querySelector('.container');
+    const criaQuizz = document.querySelector('.sectionCriarQuizz');
+    criaQuizz.classList.remove('escondido');
+    telaPrincipal.classList.add('escondido');
 
+}
+
+function voltaTelaInicial(){
+    const telaPrincipal = document.querySelector('.container');
+    const criaQuizz = document.querySelector('.sectionCriarQuizz');
+    criaQuizz.classList.add('escondido');
+    telaPrincipal.classList.remove('escondido');
+}
 
 
 
