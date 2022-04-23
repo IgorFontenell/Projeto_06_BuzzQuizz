@@ -4,6 +4,7 @@
 
 .escondido  {
     display: none;
+    opacity: 0;
 }
 a {
     text-decoration: none;
@@ -259,9 +260,10 @@ h7:hover{
     flex-direction: column;
 }
 .secao3-container {
-    background-color: white;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 
     padding: 20px;
@@ -271,21 +273,35 @@ h7:hover{
     width: 100%;
     height: auto;
     background-color: #ffffff;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     padding: 30px;
     margin-top: 3%;
-
+    box-shadow: 0px 0px 10px  rgba(0,0,0,0.1);
 }
-.inputQuizz {
+input{
     width: 90%;
     height: 60px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border: thin solid lightgrey;
     font-style: italic;
 }
+.inputCriacaoPerguntas{
+    width: 100%;
+    height: 60px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    
+}
+.perguntasCreate h4{
+    margin-top: 15px;
+}
+
 .btn-criarquizz{
     width: 90%;
     height: 80px;
@@ -297,6 +313,41 @@ h7:hover{
 .btn-criarquizz:hover{
     cursor: pointer;
     background-color: lightcoral;
+}
+.sectionCriarQuizz2, h4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 30px;
+    
+}
+.perguntasCreate{
+    width: 95%;
+    height: auto;
+    min-height: 40px;
+    box-shadow: 0px 0px 10px  rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin-top: 10px;
+}
+.perguntaMinimizada{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    margin-bottom: 25px;
+}
+
+.perguntaMinimizada ion-icon{
+    color: black;
+    font-size: 40px;
+}
+
+ion-icon:hover{
+    cursor: pointer;
 }
 
 
@@ -429,6 +480,7 @@ h7:hover{
     }
     .escondido  {
         display: none;
+        opacity: 0;
     }
     .escondido2 {
         display: none;
@@ -442,5 +494,3 @@ h7:hover{
     }
     
 }
-
-
