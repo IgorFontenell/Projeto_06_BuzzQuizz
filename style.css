@@ -43,6 +43,7 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
+    background-color: #FFFFFF;
 }
 .quizzesUsuario ion-icon {
     color: #EC362D;
@@ -132,9 +133,173 @@ img {
     height: 50%;
     display: flex;
     position: absolute;
-    bottom: 0px;
+    bottom: -2px;
     border-radius: 5px;
 }
+.quadradoClique  {
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    bottom: 0px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+.quadradoClique:hover {
+    cursor: pointer;
+
+}
+/* INICIO DA PAGINA 2 (PEDRO) */
+h4{
+    font-family: 'Roboto';
+    font-size: 23px;
+    font-weight: 700;
+
+}
+h6{
+    color: black;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 700;
+}
+ h7{
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: 'Roboto';
+    color: lightgrey;
+    transition: 0.2s linear;
+ }
+h7:hover{
+    cursor:pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: thin solid #f3f3f3;
+}
+.container2{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    background-color: #E5E5E5;
+}
+.banner{
+    width: 1051px;
+    height: 140px;
+    position: relative;
+}
+.banner img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.banner span{
+    font-size: 19px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    color: white;
+}
+.gradientebanner{
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pergunta1{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1051px;
+    height: 500px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.titulopergunta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 15px;
+    width: 100%;
+    height: 90px;
+}
+.titulopergunta span{
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
+.respostas{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content : center;
+    align-items: center;
+    margin-top: 20px;
+}
+.resposta{
+    width: 50%;
+    height: 35%;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.imgRespostas{
+    width: 100%;
+    height: 100%;    
+}
+
+/* SECAO DE CRIAR O QUIZZ */
+.secao3-criacaoQuizz {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.secao3-container {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 20px;
+    margin-top: 3%;
+}
+.input-blocks {
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    margin-top: 3%;
+
+}
+.inputQuizz {
+    width: 90%;
+    height: 60px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: thin solid lightgrey;
+    font-style: italic;
+}
+.btn-criarquizz{
+    width: 90%;
+    height: 80px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    font-size: 18px;
+}
+.btn-criarquizz:hover{
+    cursor: pointer;
+    background-color: lightcoral;
+}
+
+
 
 @media (max-width: 735px) {
 
@@ -265,154 +430,17 @@ img {
     .escondido  {
         display: none;
     }
+    .escondido2 {
+        display: none;
+        
+    }
+    .pergunta1 {
+        width: 100%;
+    }
+    .banner {
+        width: 100%;
+    }
     
 }
 
 
-/* INICIO DA PAGINA 2 (PEDRO) */
-h4{
-    font-family: 'Roboto';
-    font-size: 23px;
-    font-weight: 700;
-
-}
-h6{
-    color: black;
-    font-family: 'Roboto';
-    font-size: 13px;
-    font-weight: 700;
-}
-h7{
-    margin-top: 20px;
-    font-size: 16px;
-    font-family: 'Roboto';
-    color: lightgrey;
-    transition: 0.2s linear;
-}
-h7:hover{
-    cursor:pointer;
-    font-size: 18px;
-    font-weight: bold;
-    border-bottom: thin solid #f3f3f3;
-}
-.container2{
-    background-color: #E5E5E5;
-}
-.banner{
-    width: 100%;
-    height: 140px;
-    position: relative;
-}
-.banner img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-}
-.banner span{
-    font-size: 19px;
-    font-family: 'Roboto';
-    font-weight: 400;
-    color: white;
-}
-.gradientebanner{
-    background-color: rgba(0,0,0,0.7);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pergunta1{
-    background-color: white;
-    width: 100%;
-    height: 500px;
-    padding: 10px;
-    margin-top: 25px;
-}
-
-.titulopergunta{
-    background-color: #434CA0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 90px;
-}
-.titulopergunta span{
-    font-family: 'Roboto';
-    font-weight: 700;
-    font-size: 20px;
-    color: white;
-}
-.respostas{
-    width: 100%;
-    height: auto;
-
-    display: flex;
-    justify-content : center;
-    align-items: center;
-
-    margin-top: 20px;
-}
-.resposta{
-    margin-left: 25px;
-    margin-right: 25px;
-}
-.resposta img{
-    object-fit: cover;
-    width: 200px;
-    height: 150px;    
-}
-
-/* SECAO DE CRIAR O QUIZZ */
-.secao3-criacaoQuizz{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-.secao3-container{
-    background-color: white;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    padding: 20px;
-    margin-top: 3%;
-}
-.input-blocks{
-    width: 100%;
-    height: auto;
-    background-color: #ffffff;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 30px;
-    margin-top: 3%;
-
-}
-.inputQuizz{
-    width: 90%;
-    height: 60px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border: thin solid lightgrey;
-    font-style: italic;
-}
-.btn-criarquizz{
-    width: 90%;
-    height: 80px;
-    border-radius: 10px;
-    color: white;
-    background-color: red;
-    font-size: 18px;
-}
-.btn-criarquizz:hover{
-    cursor: pointer;
-    background-color: lightcoral;
-}
