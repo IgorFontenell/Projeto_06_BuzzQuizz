@@ -122,7 +122,7 @@ function telaCriaQuizz2(){
     if ((!Number.isInteger(inputQtdPerguntas)) && (inputQtdPerguntas < 3)){   
         alert ("Entre com um valor válido para quantidade de Perguntas [NUMERO INTEIRO MAIOR QUE 3]");
     } else controle += 1;
-    if (inputQtdNiveis <= 2) {   
+    if (inputQtdNiveis < 2) {   
         alert ("Entre com a Quantidade de niveis válido [NUMERO INTEIRO MAIOR QUE 2]");
     } else controle += 1;
     
