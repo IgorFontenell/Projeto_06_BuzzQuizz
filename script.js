@@ -3,11 +3,14 @@ let expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-
 let regex = new RegExp(expression); //EXPRESSAO PARA VERIFICAR A URL.
 let contadorDisplay = 0;
 let qtdNiveis = 0;
+let tituloQuizz = '';
+let imgQuizz = '';
+
 contadorDisplay = 0;
+
 
 let arrayRespostas = [0, 1, 2, 3];
 
-telaCriaQuizz();
 
 // Aqui nós estamos trocando o layout dos quizzes do usuário vazio pelo com conteúdo e vice-versa
 function quizzesUsuarioLayout () {
@@ -64,19 +67,35 @@ function erroPegarMsg() {
 }
 
 
-function criarQuizzSection(){
+// function criarQuizzSection(){
 
-    const telaPrincipal = document.querySelector('.quizzes');
+//     const telaPrincipal = document.querySelector('.quizzes');
 
-    const criaQuizz = document.querySelector('.sectionCriarQuizz');
+//     telaPrincipal.innerHTML = ' ';
 
-    const quizzes = document.querySelector('.quizzes')
+//     telaPrincipal.innerHTML = `
+    
+//     <div class="secao3-container">
+//                 <h4>Comece pelo começo</h4>
+//                 <div class="input-blocks">
+//                     <input class='inputQuizz' type="text" placeholder="Título do seu Quizz aqui">
+//                     <input class='inputQuizz' type="text" placeholder="URL do banner do seu quizz">
+//                     <input class='inputQuizz' type="text" placeholder="Quantidade de perguntas do quizz">
+//                     <input class='inputQuizz' type="text" placeholder="Quantidade de niveis do quizz">
+    
+//                     <button class="btn-criarquizz" onclick="telaCriaQuizz2()">Prosseguir para criar perguntas</button>
+//                     <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>
+//                 </div>
+               
+    
+//             </div>
+//     `
+//     const criaQuizz = document.querySelector('.sectionCriarQuizz');
 
-    criaQuizz.classList.remove('escondido');
-    telaPrincipal.classList.add('escondido');
-    quizzes.classList.add('escondido');
+//     const quizzes = document.querySelector('.quizzes')
 
-}
+
+// }
 
 function voltaTelaInicial(){
     if(confirm('Tem certeza que deseja cancelar e voltar à pagina inicial do BUZZQUIZZ?')){
@@ -161,7 +180,7 @@ function shuffleArray(inputArray){
 function telaCriaQuizz(){
 
     //ESSA FUNCAO ESTA RENDERIZANDO A PAGINA DE CRIACAO DE QUIZZ TELA 3 //
-    const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
+    const sectionCriaQuizz = document.querySelector('.quizzes');
 
     sectionCriaQuizz.innerHTML =`<div class="secao3-container">
                 
@@ -178,8 +197,6 @@ function telaCriaQuizz(){
    
     </div>`
 
-    qtdPerguntasGlobal = document.getElementById('input3').value;
-    
 
 }
 
@@ -192,6 +209,8 @@ function telaCriaQuizz2(){
     const inputQtdPerguntas = document.getElementById('input3').value;
     const inputQtdNiveis = document.getElementById('input4').value;
 
+    tituloQuizz = inputTitulo;
+    imgQuizz = inputURL;
     let controle = 0;
 
     if (inputTitulo.length < 20){
@@ -216,17 +235,16 @@ function telaCriaQuizz2(){
 
 function telaCriarPerguntas(qtdPerguntas){
    // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DAS PERGUNTAS.
-    const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
-    sectionCriaQuizz.classList.add('escondido');
+    const sectionCriaQuizz = document.querySelector('.quizzes');
+    
+    sectionCriaQuizz.innerHTML = ' ';
 
-    const perguntas = document.querySelector('.sectionCriarQuizz2');
-    perguntas.classList.remove('escondido');
 
-    perguntas.innerHTML += `<h4>Crie as suas perguntas</h4>`
+    sectionCriaQuizz.innerHTML += `<h4>Crie as suas perguntas</h4>`
 
     for(let i=0; i < qtdPerguntas; i++){
 
-            perguntas.innerHTML += `
+        sectionCriaQuizz.innerHTML += `
             <div class="secao3-container">
                     
                 <div class="perguntasCreate">
@@ -238,7 +256,7 @@ function telaCriarPerguntas(qtdPerguntas){
 
                     <section class="inputsPerguntas escondido">
                         <input class="inputCriacaoPerguntas" type="text" id="textoPergunta${i+1}" placeholder="Texto da pergunta">
-                        <input class="inputCriacaoPerguntas" type="text" id="cordeFundo${i+1}" placeholder="Cor de fundo da pergunta">
+                        <input class="inputCriacaoPerguntas" type="text" id="cordeFundo${i+1}" placeholder="Cor de fundo *APENAS O CODIGO DA COR - SEM '#' *">
                         
                         <h4>Resposta Correta</h4>
                         <input class="inputCriacaoPerguntas" type="text" id="respostaCorreta${i+1}" placeholder="Resposta Correta">
@@ -259,7 +277,7 @@ function telaCriarPerguntas(qtdPerguntas){
             </div>`
     }
 
-        perguntas.innerHTML += `<button class="btn-criarquizz" onclick="validandoPerguntas(${qtdPerguntas})">Prosseguir para criar Níveis</button>
+    sectionCriaQuizz.innerHTML += `<button class="btn-criarquizz" onclick="validandoPerguntas(${qtdPerguntas})">Prosseguir para criar Níveis</button>
         <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>`
         
 }
@@ -268,7 +286,9 @@ function validandoPerguntas(qtdPerguntas){
     let controleA, controleB, controleC = false;
     let verificaDados = 0;
 
+    
     for (let i=0;i<qtdPerguntas; i++){
+       
         
         const textoPergunta = document.getElementById(`textoPergunta${i+1}`).value;
         const cordeFundo = document.getElementById(`cordeFundo${i+1}`).value;
@@ -289,6 +309,7 @@ function validandoPerguntas(qtdPerguntas){
             alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
             Por favor entre com o texto de forma correta (MINIMO 20 CARACTERES)`);
         } else verificaDados ++;
+           
         if (cordeFundo.length !== 6){
             alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
            ENTRE COM UM VALOR DE COR VALIDO (LETRAS DE A - F *MAX 6 CARACTERES*)`);
@@ -330,29 +351,23 @@ function validandoPerguntas(qtdPerguntas){
                 Por favor entre com um valor valido de URL de IMAGEM...`);
             }
         }
-
         if (((controleA) || (controleB) || (controleC)) && verificaDados == qtdPerguntas*4){
-            console.log('Parabens passou tem todas as etapas, agora vou chamar os niveis para preenchimento.')
+            console.log('Parabens passou em todas as etapas, agora vou chamar os niveis para preenchimento.');
+               
             decidindoNiveis(controleA);
         }
 
-}
+    } // final do for.
  
-
-
 }
 
 function decidindoNiveis(){
     // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DOS NIVEIS.
      
-     const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
-     sectionCriaQuizz.innerHTML = ' ';
-     sectionCriaQuizz.classList.remove('escondido');
- 
-     const perguntas = document.querySelector('.sectionCriarQuizz2');
-     perguntas.classList.add('escondido');
- 
-     sectionCriaQuizz.innerHTML += `<h4>Agora, decida os seus níveis!</h4>`
+     const sectionCriaQuizz = document.querySelector('.quizzes');
+     sectionCriaQuizz.innerHTML = " ";
+  
+     sectionCriaQuizz.innerHTML = `<h4>Agora, decida os seus níveis!</h4>`
       
      for(let i=0; i < qtdNiveis; i++){
  
@@ -430,29 +445,37 @@ function decidindoNiveis(){
 }// fim da funcao envia quizz
 
 function quizzFinalizado(){
-    const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
-    sectionCriaQuizz.classList.add('escondido');
+    const telaPrincipal = document.querySelector('.quizzes');
 
-    const perguntas = document.querySelector('.sectionCriarQuizz2');
-    perguntas.innerHTML = '';
-    perguntas.classList.remove('escondido');
+    telaPrincipal.innerHTML = " ";
 
-    perguntas.innerHTML = `<h7> PARABENS VC CONSEGUIU COM SUCESSO BOLODINHO.`
-
-
-
+    telaPrincipal.innerHTML +=`
+    <h4>Seu quizz está pronto! Agora é jogar e se divertir... </h4>
+    <ul class='quizzCriado'>
+        <li>
+            <div class="quadradoClique" onclick="clicarQuizz()">
+            </div>
+            <div class="gradiente"></div>
+                <img src='${imgQuizz}' alt="Carregando imagem..." width="340px" height="180px"/>
+                <span class="tituloQuizz">${tituloQuizz}</span>
+        </li>
+    </ul>
+    
+    <button class="btn-finalizado" onclick="enviarServidor()">Acessar o Quizz</button>
+    <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>
+    `
 
 }
 
-
+function enviarServidor(){
+    alert('Funcao sendo implementada, por favor aguarde...');
+    location.reload();
+}
 function expandirPergunta(id){
     //aqui estamos expandindo as perguntas
     const iconeClicado = document.getElementById(id).nextElementSibling;
     iconeClicado.classList.toggle('escondido');
 }
-
-
-
 
 
 

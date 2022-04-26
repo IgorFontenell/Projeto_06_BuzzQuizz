@@ -26,9 +26,9 @@
                 <div class="quizzesVazio">
                     <span class="texto_create">Você não criou nenhum</span>
                     <span class="texto_create">quizz ainda :(</span>
-                            <button  onclick="criarQuizzSection()" class="botao">Criar Quizz</button>                     
+                            <button  onclick="telaCriaQuizz()" class="botao">Criar Quizz</button>                     
                 </div>
-                <div class="quizzesOutroLayout">
+                <div class="quizzesOutroLayout escondido">
                     <div class="topo-quizzes-usuario">
                         <span class="tituloGeral ">Seus Quizzes</span>
                         <a href="index.html" target="_blanck"><ion-icon name="add-circle-sharp"></ion-icon></a> 
@@ -100,35 +100,20 @@
     </div>
 
 
+        <!--Quiz finalizado com sucesso VAI APERECER SOMENTE NO FINAL SE DER TUDO CERTO...-->
+        <div class="quizzFinalizado escondido">
+        
+        </div>
 
-
-     </div>
+    
         <!-- FAZENDO TESTE PARA APARECER NOVA PAGINA -->
         <div class="sectionCriarQuizz escondido">
-                    
-           
-            <div class="secao3-container">
-                <h4>Comece pelo começo</h4>
-                <div class="input-blocks">
-                    <input class='inputQuizz' type="text" placeholder="Título do seu Quizz aqui">
-                    <input class='inputQuizz' type="text" placeholder="URL do banner do seu quizz">
-                    <input class='inputQuizz' type="text" placeholder="Quantidade de perguntas do quizz">
-                    <input class='inputQuizz' type="text" placeholder="Quantidade de niveis do quizz">
-    
-                    <button class="btn-criarquizz">Prosseguir para criar perguntas</button>
-                    <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>
-                </div>
-               
-    
-            </div>
          
         </div>
 
-        <section class="sectionCriarQuizz2">
-            
-        </section>
+     
 
-        <!--    ISTO SERA ADICIONADO NA SECTION QUIZZ SELECIONADO (DEIXEI COMENTADO PARA NAO POLUIR) -->
+           <!-- ISTO SERA ADICIONADO NA SECTION QUIZZ SELECIONADO (DEIXEI COMENTADO PARA NAO POLUIR)
         <div class="container2 escondido">
             <div class="topo">
                 <h1>BuzzQuizz</h1>
@@ -199,10 +184,10 @@
             </div> 
 
 
-         -->
+         
 
         
-        </div> 
+        </div>  -->
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
