@@ -3,7 +3,7 @@ let contadorDisplay = 0;
 
 contadorDisplay = 0;
 
-let arrayRespostas = [0, 1, 2, 3];
+let arrayRespostas_Numero = [];
 
 
 
@@ -13,15 +13,15 @@ telaCriaQuizz();
 // Aqui nós estamos trocando o layout dos quizzes do usuário vazio pelo com conteúdo e vice-versa
 function quizzesUsuarioLayout () {
     if (contadorDisplay >= 1) {
-        let procuracao = document.querySelector(".quizzesVazio");
-        procuracao.classList.add("escondido2");
+        let procuracao = document.querySelector(".quizzesVazioSuperior");
+        procuracao.classList.add("escondido");
         procuracao = document.querySelector(".quizzesOutroLayout");
-        procuracao.classList.remove("escondido2");
+        procuracao.classList.remove("escondido");
     } else if (contadorDisplay === 0) {
-        let procuracao = document.querySelector(".quizzesVazio");
-        procuracao.classList.remove("escondido2");
+        let procuracao = document.querySelector(".quizzesVazioSuperior");
+        procuracao.classList.remove("escondido");
         procuracao = document.querySelector(".quizzesOutroLayout");
-        procuracao.classList.add("escondido2");
+        procuracao.classList.add("escondido");
     }
 }
 quizzesUsuarioLayout();
@@ -83,34 +83,32 @@ function voltaTelaInicial(){
    
     location.reload();
 }
+
 // Funçao que ativa ao clicar no quizz e coloca aquele quizz clicado no html
 function clicarQuizz (element) {
 
 
     let requisicao = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${element}`)
-    trocaDeEscondidos("container2");
+    trocaDeEscondidos();
 
     requisicao.then(colocarNoDom);
 
 
 }
 
-function trocaDeEscondidos (classe) {
+function trocaDeEscondidos () {
+
     console.log("Funcionou");
-    let procuracao = document.querySelector(".escondido");
-    while (procuracao !== null) {
-        procuracao.classList.remove("escondido");
-        procuracao = document.querySelector(".escondido");
-        }
-    procuracao = document.querySelector(".container");
-    procuracao.classList.add("escondido");
-    procuracao = document.querySelector(".sectionCriarQuizz");
-    procuracao.classList.add("escondido");
-    procuracao = document.querySelector(".container2");
-    procuracao.classList.add("escondido");
+    let quizz = document.querySelector(".quizzes");
     
-    procuracao = document.querySelector(`.${classe}`);
-    procuracao.classList.remove("escondido");
+    let criarQuizz = document.querySelector(".sectionCriarQuizz");
+
+    let jogoQuiz = document.querySelector(".jogoDoQuiz");
+
+    quizz.classList.add("escondido");
+    criarQuizz.classList.add("escondido");
+    jogoQuiz.classList.remove("escondido");
+
 }
 
 function colocarNoDom (response) {
@@ -118,7 +116,7 @@ function colocarNoDom (response) {
     let parametro = response.data
     let perguntas = "";
 
-    let procura = document.querySelector(".container2");
+    let procura = document.querySelector(".jogoDoQuiz");
     procura.innerHTML = "" +
     `<div class="banner"> 
     <div class="gradientebanner">
@@ -129,20 +127,25 @@ function colocarNoDom (response) {
 
     for (let i = 0; i < parametro.questions.length; i++) {
         let perguntaAtual = parametro.questions[i];
-        arrayRespostas = shuffleArray(arrayRespostas);
+        
+
+        arrayRespostas_Numero = parametro.questions[i].answers;
+        arrayRespostas_Numero = shuffleArray(arrayRespostas_Numero);
+
         //Já colocamos o titulo geral do questionário agora escreveremos cada pergunta com as suas respostas aleatórias
         perguntas += 
         `<div class="pergunta1">
         <div class="titulopergunta" style="background-color: ${perguntaAtual.color};">
             <span>${perguntaAtual.title}</span>
-        </div>`
-        for (let i = 0; i < perguntaAtual.answers.length; i++) {
-            console.log(perguntaAtual.answers[arrayRespostas[i]].image);
+        </div>`;
+        for (let i = 0; i < arrayRespostas_Numero.length; i++) {
+            console.log(arrayRespostas_Numero);
             perguntas += `
             <div class="resposta">
-                <img src="${perguntaAtual.answers[arrayRespostas[i]].image}" alt="Imagem carregando" class="imgRespostas">
-                <h6>${perguntaAtual.answers[arrayRespostas[i]].text}</h6>
-            </div>`
+                <img src="${arrayRespostas_Numero[i].image}" alt="Imagem carregando" class="imgRespostas">
+                <h6>${arrayRespostas_Numero[i].text}</h6>
+            </div>`;
+            console.log(perguntas);
         }
          
         perguntas += "</div>";
@@ -150,15 +153,6 @@ function colocarNoDom (response) {
     }
     procura.innerHTML += `${perguntas}`;
     
-
-
-
-
-
-
-
-
-
 }
 
 function shuffleArray(inputArray){
