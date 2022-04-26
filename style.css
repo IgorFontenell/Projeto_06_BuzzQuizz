@@ -121,7 +121,6 @@ h1 {
 ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 .tituloGeral {
     color: #000000;
@@ -578,7 +577,7 @@ ion-icon:hover{
     .quizzes {
         width: 100%;
         display: flex;
-        align-items: center;
+        flex-direction: column;
     }
     .container {
         background-color: #FFFFFF;
