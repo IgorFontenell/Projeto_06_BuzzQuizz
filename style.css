@@ -164,7 +164,7 @@ h6{
     font-weight: 700;
 }
  h7{
-    margin-top: 20px;
+    margin-top: 20px;margin-bottom: 20px;
     font-size: 16px;
     font-family: 'Roboto';
     color: lightgrey;
@@ -323,6 +323,12 @@ input{
     margin-top: 30px;
     
 }
+.sectionCriarQuizz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .perguntasCreate{
     width: 95%;
     height: auto;
@@ -344,6 +350,11 @@ input{
 .perguntaMinimizada ion-icon{
     color: black;
     font-size: 40px;
+}
+
+.inputDescription{
+    width: 100%;
+    height: 200px;
 }
 
 ion-icon:hover{
