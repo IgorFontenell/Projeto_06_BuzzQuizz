@@ -136,17 +136,17 @@ function colocarNoDom (response) {
         //Já colocamos o titulo geral do questionário agora escreveremos cada pergunta com as suas respostas aleatórias
         perguntas += 
         `<div class="pergunta1">
-        <div class="titulopergunta" style="background-color: ${perguntaAtual.color};">
+        <div class="titulopergunta opaco" style="background-color: ${perguntaAtual.color};">
             <span>${perguntaAtual.title}</span>
         </div>`;
         for (let i = 0; i < arrayRespostas_Numero.length; i++) {
-            console.log(arrayRespostas_Numero);
+            
             perguntas += `
-            <div class="resposta" onclick="clicarResposta(this,${arrayRespostas_Numero[i].isCorrectAnswer})">
+            <div class="resposta" onclick="clicarResposta(this, ${arrayRespostas_Numero[i].isCorrectAnswer}, ${arrayRespostas_Numero[i]})">
                 <img src="${arrayRespostas_Numero[i].image}" alt="Imagem carregando" class="imgRespostas">
                 <h6>${arrayRespostas_Numero[i].text}</h6>
             </div>`;
-            console.log(perguntas);
+            
         }
          
         perguntas += "</div>";
@@ -454,9 +454,26 @@ function expandirPergunta(id){
     iconeClicado.classList.toggle('escondido');
 }
 
-function clicarResposta (element, condicional) {
-console.log(element);
-console.log(condicional);
+function clicarResposta (elemento, condicional) {
+   let elementoPai = elemento.parentNode;
+    elementoPai.classList.add("esbranquicado");
+    console.log(elementoPai);
+    
+    let procura = document.querySelector(".esbranquicado").querySelectorAll(".resposta");
+    procura.classList.add("esbranquicado");
+
+
+    
+
+
+    if(condicional === true) {
+    elemento.classList.add("correto");
+    elemento.classList.add("opaco");
+    } else if (condicional === false) {
+        elemento.classList.add("errado");
+        elemento.classList.add("opaco");
+    }
+    
 
 
 }
