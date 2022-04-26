@@ -9,6 +9,31 @@
 a {
     text-decoration: none;
 }
+.btn-finalizado{
+    width: 400px;
+    height: 40px;
+    background-color: red;
+    border-radius: 35px;
+    color: white;
+    font-family: 'Roboto';
+    font-size: 18px;
+    transition: 0.5s all;
+}
+.btn-finalizado:hover{
+    cursor: pointer;
+    width: 420px;
+    height: 40px;
+    font-weight: 700;
+    font-size: 18px;
+    background-color: lightcoral;
+}
+
+.teste{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .topo {
     width: 100%;
@@ -21,9 +46,6 @@ a {
 }
 .quizzes {
     width: 1051px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-left: 15%;
     margin-right: 15%;
 }
@@ -99,6 +121,7 @@ h1 {
 ul {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .tituloGeral {
     color: #000000;
@@ -146,13 +169,6 @@ img {
     border-radius: 5px;
     width: 100%;
     height: 100%;
-
-    transition: 0.5s all;
-}
-
-.quizzFinalizado h4{
-    margin-bottom: 30px;
-    margin-top: 50px;
 }
 .quadradoClique:hover {
     cursor: pointer;
@@ -298,15 +314,6 @@ h7:hover{
     padding: 20px;
     margin-top: 3%;
 }
-.quizzFinalizado{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    justify-content: flex-start;
-    align-items: center;
-    transition: 0.5s all;
-}
 .input-blocks {
     width: 100%;
     height: auto;
@@ -343,20 +350,12 @@ input{
 .btn-criarquizz{
     width: 90%;
     height: 80px;
-    border-radius: 15px;
+    border-radius: 10px;
     color: white;
     background-color: red;
     font-size: 18px;
 }
-.btn-finalizado{
-    width: 340px;
-    height: 40px;
-    border-radius: 15px;
-    color: white;
-    background-color: red;
-    font-size: 18px;
-}
-.btn-criarquizz:hover, .btn-finalizado:hover{
+.btn-criarquizz:hover{
     cursor: pointer;
     background-color: lightcoral;
 }
@@ -369,13 +368,7 @@ input{
     margin-top: 30px;
     
 }
-.sectionCriarQuizz{
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 .perguntasCreate{
     width: 95%;
     height: auto;
@@ -407,6 +400,7 @@ input{
 ion-icon:hover{
     cursor: pointer;
 }
+
 
 @media (min-width: 736px ) and (max-width: 1100px) {
    
@@ -467,8 +461,6 @@ ion-icon:hover{
 
     }
     .quizzesVazio{
-        width: 100%;
-        height: 180px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -563,6 +555,7 @@ ion-icon:hover{
         width: 40%;
     }
    
+   
     
 
 }
@@ -584,6 +577,8 @@ ion-icon:hover{
     }
     .quizzes {
         width: 100%;
+        display: flex;
+        align-items: center;
     }
     .container {
         background-color: #FFFFFF;

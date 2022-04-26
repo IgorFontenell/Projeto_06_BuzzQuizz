@@ -3,27 +3,23 @@ let expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-
 let regex = new RegExp(expression); //EXPRESSAO PARA VERIFICAR A URL.
 let contadorDisplay = 0;
 let qtdNiveis = 0;
-let tituloQuizz = '';
-let imgQuizz = '';
-
 contadorDisplay = 0;
 
-
-let arrayRespostas = [0, 1, 2, 3];
+let arrayRespostas_Numero = [];
 
 
 // Aqui nós estamos trocando o layout dos quizzes do usuário vazio pelo com conteúdo e vice-versa
 function quizzesUsuarioLayout () {
     if (contadorDisplay >= 1) {
-        let procuracao = document.querySelector(".quizzesVazio");
-        procuracao.classList.add("escondido2");
+        let procuracao = document.querySelector(".quizzesVazioSuperior");
+        procuracao.classList.add("escondido");
         procuracao = document.querySelector(".quizzesOutroLayout");
-        procuracao.classList.remove("escondido2");
+        procuracao.classList.remove("escondido");
     } else if (contadorDisplay === 0) {
-        let procuracao = document.querySelector(".quizzesVazio");
-        procuracao.classList.remove("escondido2");
+        let procuracao = document.querySelector(".quizzesVazioSuperior");
+        procuracao.classList.remove("escondido");
         procuracao = document.querySelector(".quizzesOutroLayout");
-        procuracao.classList.add("escondido2");
+        procuracao.classList.add("escondido");
     }
 }
 quizzesUsuarioLayout();
@@ -72,42 +68,39 @@ function voltaTelaInicial(){
     }
     
 }
+
 // Funçao que ativa ao clicar no quizz e coloca aquele quizz clicado no html
 function clicarQuizz (element) {
 
 
     let requisicao = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${element}`)
-    trocaDeEscondidos("container2");
+    trocaDeEscondidos();
 
     requisicao.then(colocarNoDom);
 
 
 }
 
-function trocaDeEscondidos (classe) {
+function trocaDeEscondidos () {
+
     console.log("Funcionou");
-    let procuracao = document.querySelector(".escondido");
-    while (procuracao !== null) {
-        procuracao.classList.remove("escondido");
-        procuracao = document.querySelector(".escondido");
-        }
-    procuracao = document.querySelector(".container");
-    procuracao.classList.add("escondido");
-    procuracao = document.querySelector(".sectionCriarQuizz");
-    procuracao.classList.add("escondido");
-    procuracao = document.querySelector(".container2");
-    procuracao.classList.add("escondido");
+    let quizz = document.querySelector(".quizzes");
     
-    procuracao = document.querySelector(`.${classe}`);
-    procuracao.classList.remove("escondido");
+    let criarQuizz = document.querySelector(".sectionCriarQuizz");
+
+    let jogoQuiz = document.querySelector(".jogoDoQuiz");
+
+    quizz.classList.add("escondido");
+    criarQuizz.classList.add("escondido");
+    jogoQuiz.classList.remove("escondido");
+
 }
 
 function colocarNoDom (response) {
-    console.log(response.data);
-    let parametro = response.data
+    let parametro = response.data;
     let perguntas = "";
 
-    let procura = document.querySelector(".container2");
+    let procura = document.querySelector(".jogoDoQuiz");
     procura.innerHTML = "" +
     `<div class="banner"> 
     <div class="gradientebanner">
@@ -118,20 +111,27 @@ function colocarNoDom (response) {
 
     for (let i = 0; i < parametro.questions.length; i++) {
         let perguntaAtual = parametro.questions[i];
-        arrayRespostas = shuffleArray(arrayRespostas);
+        
+
+        arrayRespostas_Numero = parametro.questions[i].answers;
+        arrayRespostas_Numero = shuffleArray(arrayRespostas_Numero);
+
         //Já colocamos o titulo geral do questionário agora escreveremos cada pergunta com as suas respostas aleatórias
         perguntas += 
-        `<div class="pergunta1">
-        <div class="titulopergunta" style="background-color: ${perguntaAtual.color};">
+        `
+        <div class="pergunta1">
+        <div class="titulopergunta opaco" style="background-color: ${perguntaAtual.color};">
             <span>${perguntaAtual.title}</span>
-        </div>`
-        for (let i = 0; i < perguntaAtual.answers.length; i++) {
-            console.log(perguntaAtual.answers[arrayRespostas[i]].image);
+        </div>`;
+        for (let t = 0; t < arrayRespostas_Numero.length; t++) {
+            
             perguntas += `
-            <div class="resposta">
-                <img src="${perguntaAtual.answers[arrayRespostas[i]].image}" alt="Imagem carregando" class="imgRespostas">
-                <h6>${perguntaAtual.answers[arrayRespostas[i]].text}</h6>
-            </div>`
+            
+            <div class="resposta" onclick="clicarResposta(this, ${arrayRespostas_Numero[t].isCorrectAnswer})">
+                <img src="${arrayRespostas_Numero[t].image}" alt="Imagem carregando" class="imgRespostas">
+                <h6>${arrayRespostas_Numero[t].text}</h6>
+            </div>`;
+            
         }
          
         perguntas += "</div>";
@@ -161,7 +161,7 @@ function telaCriaQuizz(){
                     <input class='inputQuizz' id="input4" type="number" placeholder="Quantidade de niveis do quizz">
 
                     <button class="btn-criarquizz" onclick="telaCriaQuizz2()">Prosseguir para criar perguntas</button>
-                    <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL BUZZQUIZZ</h7>
+                    <br><h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL BUZZQUIZZ</h7>
                 </div>
    
     </div>`
@@ -203,54 +203,53 @@ function telaCriaQuizz2(){
 }
 
 function telaCriarPerguntas(qtdPerguntas){
-   // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DAS PERGUNTAS.
-    const sectionCriaQuizz = document.querySelector('.quizzes');
-    
-    sectionCriaQuizz.innerHTML = '  ';
-
-    sectionCriaQuizz.innerHTML += `<h4>Crie as suas perguntas</h4>`
-
-    for(let i=0; i < qtdPerguntas; i++){
-
-        sectionCriaQuizz.innerHTML += `
-            <div class="secao3-container">
-                    
-                <div class="perguntasCreate">
-                    
-                    <div class="perguntaMinimizada" id="${i+1}">
-                        <h4>Pergunta ${i+1}</h4>
-                        <ion-icon onclick='expandirPergunta(${i+1})' name="create-outline"></ion-icon>
-                    </div>
-
-                    <section class="inputsPerguntas escondido">
-                        <input class="inputCriacaoPerguntas" type="text" id="textoPergunta${i+1}" placeholder="Texto da pergunta">
-                        <input class="inputCriacaoPerguntas" type="text" id="cordeFundo${i+1}" placeholder="Cor de fundo *APENAS O CODIGO DA COR - SEM '#' *">
+    // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DAS PERGUNTAS.
+     const sectionCriaQuizz = document.querySelector('.quizzes');
+     
+     sectionCriaQuizz.innerHTML = '  ';
+ 
+     sectionCriaQuizz.innerHTML += `<h4>Crie as suas perguntas</h4>`
+ 
+     for(let i=0; i < qtdPerguntas; i++){
+ 
+         sectionCriaQuizz.innerHTML += `
+             <div class="secao3-container">
+                     
+                 <div class="perguntasCreate">
+                     
+                     <div class="perguntaMinimizada" id="${i+1}">
+                         <h4>Pergunta ${i+1}</h4>
+                         <ion-icon onclick='expandirPergunta(${i+1})' name="create-outline"></ion-icon>
+                     </div>
+ 
+                     <section class="inputsPerguntas escondido">
+                         <input class="inputCriacaoPerguntas" type="text" id="textoPergunta${i+1}" placeholder="Texto da pergunta">
+                         <input class="inputCriacaoPerguntas" type="text" id="cordeFundo${i+1}" placeholder="Cor de fundo *APENAS O CODIGO DA COR - SEM '#' *">
+                         
+                         <h4>Resposta Correta</h4>
+                         <input class="inputCriacaoPerguntas" type="text" id="respostaCorreta${i+1}" placeholder="Resposta Correta">
+                         <input class="inputCriacaoPerguntas" type="url" id="urlImagem${i+1}" placeholder="URL da imagem">
+ 
+                         <h4>Respostas Incorretas</h4>
+                         <input class="inputCriacaoPerguntas" type="text" id="incorretaA${i+1}" placeholder="Resposta Incorreta 1">
+                         <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaA${i+1}" placeholder="URL da imagem 1">
+                         
+                         <input class="inputCriacaoPerguntas" type="text" id="incorretaB${i+1}" placeholder="Resposta Incorreta 2">
+                         <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaB${i+1}" placeholder="URL da imagem 2">
+                         
+                         <input class="inputCriacaoPerguntas" type="text" id="incorretaC${i+1}" placeholder="Resposta Incorreta 3">
+                         <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaC${i+1}" placeholder="URL da imagem 3">
+                     </section>
                         
-                        <h4>Resposta Correta</h4>
-                        <input class="inputCriacaoPerguntas" type="text" id="respostaCorreta${i+1}" placeholder="Resposta Correta">
-                        <input class="inputCriacaoPerguntas" type="url" id="urlImagem${i+1}" placeholder="URL da imagem">
-
-                        <h4>Respostas Incorretas</h4>
-                        <input class="inputCriacaoPerguntas" type="text" id="incorretaA${i+1}" placeholder="Resposta Incorreta 1">
-                        <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaA${i+1}" placeholder="URL da imagem 1">
-                        
-                        <input class="inputCriacaoPerguntas" type="text" id="incorretaB${i+1}" placeholder="Resposta Incorreta 2">
-                        <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaB${i+1}" placeholder="URL da imagem 2">
-                        
-                        <input class="inputCriacaoPerguntas" type="text" id="incorretaC${i+1}" placeholder="Resposta Incorreta 3">
-                        <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaC${i+1}" placeholder="URL da imagem 3">
-                    </section>
-                       
-                </div>
-            </div>`
-    }
-
-    sectionCriaQuizz.innerHTML += `<button class="btn-criarquizz" onclick="validandoPerguntas(${qtdPerguntas})">Prosseguir para criar Níveis</button>
-        <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>`
-        
-}
-
-function validandoPerguntas(qtdPerguntas){
+                 </div>
+             </div>`
+     }
+ 
+     sectionCriaQuizz.innerHTML += `<div class="teste"><button class="btn-criarquizz" onclick="validandoPerguntas(${qtdPerguntas})">Prosseguir para criar Níveis</button>
+         <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7></div>`
+         
+ }
+ function validandoPerguntas(qtdPerguntas){
 
     let controleA, controleB, controleC = false;
     let verificaDados = 0;
@@ -281,7 +280,7 @@ function validandoPerguntas(qtdPerguntas){
            
         if (cordeFundo.length !== 6){
             alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
-           ENTRE COM UM VALOR DE COR VALIDO (LETRAS DE A - F *MAX 6 CARACTERES*)`);
+           ENTRE COM UM VALOR DE COR VALIDO (LETRAS DE A - F MAX 6 CARACTERES)`);
         }else verificaDados ++;
         if (respostaCorreta == ''){
             alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
@@ -362,8 +361,8 @@ function decidindoNiveis(){
              </div>`
      }
  
-     sectionCriaQuizz.innerHTML += `<button class="btn-criarquizz" onclick="enviarQuizz()">Finalizar envio do QUIZ</button>
-     <h7 onclick="voltaTelaInicial()">CANCELAR ENVIO DO QUIZZ</h7>`
+     sectionCriaQuizz.innerHTML += `<div class="teste"><button class="btn-criarquizz" onclick="enviarQuizz()">Finalizar envio do QUIZ</button>
+     <h7 onclick="voltaTelaInicial()">CANCELAR ENVIO DO QUIZZ</h7></div>`
          
  }
 
@@ -430,12 +429,13 @@ function quizzFinalizado(){
         </li>
     </ul>
     
+    <div class="teste">
     <button class="btn-finalizado" onclick="enviarServidor()">Acessar o Quizz</button>
     <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>
+    </div>
     `
 
 }
-
 function enviarServidor(){
     alert('Funcao sendo implementada, por favor aguarde...');
     location.reload();
@@ -447,32 +447,24 @@ function expandirPergunta(id){
     iconeClicado.classList.toggle('escondido');
 }
 
+function clicarResposta (elemento, condicional) {
+   let elementoPai = elemento.parentNode;
+    elementosFilhos = elementoPai.childNodes;
+    console.log(elementosFilhos);
 
-// Isso aqui é só pra caso dê algum bug a gente comparar com o html original
-let verDepois = `<div class="pergunta1"> 
-    <div class="titulopergunta">
-        <span>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span>
-    </div>
+    for(let i = 3; i < elementosFilhos.length; i = i + 2){
+        console.log(i);
+        elementosFilhos[i].classList.add("esbranquicado"); 
+    }
     
-    <div class="respostas">
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-       
-    </div>
-    <div class="respostas">
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-    </div>
-</div>`;
+    if(condicional === true) {
+    elemento.classList.add("correto");
+    elemento.classList.add("opaco");
+    } else if (condicional === false) {
+        elemento.classList.add("errado");
+        elemento.classList.add("opaco");
+    }
+    
+
+
+}
