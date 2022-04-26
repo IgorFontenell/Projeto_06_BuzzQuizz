@@ -21,6 +21,9 @@ a {
 }
 .quizzes {
     width: 1051px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-left: 15%;
     margin-right: 15%;
 }
@@ -63,7 +66,7 @@ h1 {
     justify-content: center;
     align-items: center;
     border: 2px dashed #D4D4D4;
-    background-color: rgb(243, 243, 243);
+    background-color: #fafafa;
 }
 .texto_create {
     display: inline-block;
@@ -143,6 +146,13 @@ img {
     border-radius: 5px;
     width: 100%;
     height: 100%;
+
+    transition: 0.5s all;
+}
+
+.quizzFinalizado h4{
+    margin-bottom: 30px;
+    margin-top: 50px;
 }
 .quadradoClique:hover {
     cursor: pointer;
@@ -288,6 +298,15 @@ h7:hover{
     padding: 20px;
     margin-top: 3%;
 }
+.quizzFinalizado{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    align-items: center;
+    transition: 0.5s all;
+}
 .input-blocks {
     width: 100%;
     height: auto;
@@ -324,12 +343,20 @@ input{
 .btn-criarquizz{
     width: 90%;
     height: 80px;
-    border-radius: 10px;
+    border-radius: 15px;
     color: white;
     background-color: red;
     font-size: 18px;
 }
-.btn-criarquizz:hover{
+.btn-finalizado{
+    width: 340px;
+    height: 40px;
+    border-radius: 15px;
+    color: white;
+    background-color: red;
+    font-size: 18px;
+}
+.btn-criarquizz:hover, .btn-finalizado:hover{
     cursor: pointer;
     background-color: lightcoral;
 }
@@ -343,6 +370,7 @@ input{
     
 }
 .sectionCriarQuizz{
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;

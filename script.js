@@ -113,7 +113,7 @@ function trocaDeEscondidos () {
 }
 
 function colocarNoDom (response) {
-    let parametro = response.data
+    let parametro = response.data;
     let perguntas = "";
 
     let procura = document.querySelector(".jogoDoQuiz");
@@ -465,8 +465,6 @@ function clicarResposta (elemento, condicional) {
         elementosFilhos[i].classList.add("esbranquicado"); 
     }
     
-
-    
     if(condicional === true) {
     elemento.classList.add("correto");
     elemento.classList.add("opaco");
@@ -478,38 +476,3 @@ function clicarResposta (elemento, condicional) {
 
 
 }
-
-
-
-
-
-
-
-// Isso aqui é só pra caso dê algum bug a gente comparar com o html original
-let verDepois = `<div class="pergunta1"> 
-    <div class="titulopergunta">
-        <span>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</span>
-    </div>
-    
-    <div class="respostas">
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-       
-    </div>
-    <div class="respostas">
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-        <div class="resposta">
-            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/01/ford-mustang-gt350r-16.jpg?resize=650,434" alt="mustangao nervoso" class="imgRespostas">
-            <h6>Mustangao brabo</h6>
-        </div>
-    </div>
-</div>`;
