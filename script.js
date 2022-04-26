@@ -66,37 +66,6 @@ function erroPegarMsg() {
 
 }
 
-
-// function criarQuizzSection(){
-
-//     const telaPrincipal = document.querySelector('.quizzes');
-
-//     telaPrincipal.innerHTML = ' ';
-
-//     telaPrincipal.innerHTML = `
-    
-//     <div class="secao3-container">
-//                 <h4>Comece pelo começo</h4>
-//                 <div class="input-blocks">
-//                     <input class='inputQuizz' type="text" placeholder="Título do seu Quizz aqui">
-//                     <input class='inputQuizz' type="text" placeholder="URL do banner do seu quizz">
-//                     <input class='inputQuizz' type="text" placeholder="Quantidade de perguntas do quizz">
-//                     <input class='inputQuizz' type="text" placeholder="Quantidade de niveis do quizz">
-    
-//                     <button class="btn-criarquizz" onclick="telaCriaQuizz2()">Prosseguir para criar perguntas</button>
-//                     <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>
-//                 </div>
-               
-    
-//             </div>
-//     `
-//     const criaQuizz = document.querySelector('.sectionCriarQuizz');
-
-//     const quizzes = document.querySelector('.quizzes')
-
-
-// }
-
 function voltaTelaInicial(){
     if(confirm('Tem certeza que deseja cancelar e voltar à pagina inicial do BUZZQUIZZ?')){
         location.reload();
@@ -280,6 +249,7 @@ function telaCriarPerguntas(qtdPerguntas){
         <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>`
         
 }
+
 function validandoPerguntas(qtdPerguntas){
 
     let controleA, controleB, controleC = false;
@@ -397,7 +367,7 @@ function decidindoNiveis(){
          
  }
 
- function enviarQuizz(){
+function enviarQuizz(){
 
     let contador = 0;
     let controleAcertoMin = false;
@@ -470,6 +440,7 @@ function enviarServidor(){
     alert('Funcao sendo implementada, por favor aguarde...');
     location.reload();
 }
+
 function expandirPergunta(id){
     //aqui estamos expandindo as perguntas
     const iconeClicado = document.getElementById(id).nextElementSibling;
