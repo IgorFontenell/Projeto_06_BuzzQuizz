@@ -165,7 +165,7 @@ function shuffleArray(inputArray){
 function telaCriaQuizz(){
 
     //ESSA FUNCAO ESTA RENDERIZANDO A PAGINA DE CRIACAO DE QUIZZ TELA 3 //
-    const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
+    const sectionCriaQuizz = document.querySelector('.quizzes');
 
     sectionCriaQuizz.innerHTML =`<div class="secao3-container">
                 
