@@ -478,9 +478,6 @@ function expandirPergunta(id){
 }
 
 
-
-
-
 // Isso aqui é só pra caso dê algum bug a gente comparar com o html original
 let verDepois = `<div class="pergunta1"> 
     <div class="titulopergunta">
