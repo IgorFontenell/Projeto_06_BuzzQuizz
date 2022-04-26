@@ -237,8 +237,7 @@ function telaCriarPerguntas(qtdPerguntas){
    // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DAS PERGUNTAS.
     const sectionCriaQuizz = document.querySelector('.quizzes');
     
-    sectionCriaQuizz.innerHTML = ' ';
-
+    sectionCriaQuizz.innerHTML = '  ';
 
     sectionCriaQuizz.innerHTML += `<h4>Crie as suas perguntas</h4>`
 
