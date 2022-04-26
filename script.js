@@ -1,16 +1,13 @@
 const URL_QUIZZ = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes";
 let expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-let regex = new RegExp(expression);
+let regex = new RegExp(expression); //EXPRESSAO PARA VERIFICAR A URL.
 let contadorDisplay = 0;
 let qtdNiveis = 0;
 contadorDisplay = 0;
 
 let arrayRespostas = [0, 1, 2, 3];
 
-
-
 telaCriaQuizz();
-
 
 // Aqui nós estamos trocando o layout dos quizzes do usuário vazio pelo com conteúdo e vice-versa
 function quizzesUsuarioLayout () {
@@ -154,24 +151,12 @@ function colocarNoDom (response) {
     }
     procura.innerHTML += `${perguntas}`;
     
-
-
-
-
-
-
-
-
-
 }
 
 function shuffleArray(inputArray){
    return inputArray.sort(()=> Math.random() - 0.5);
     
 }
-
-
-
 
 function telaCriaQuizz(){
 
@@ -193,11 +178,15 @@ function telaCriaQuizz(){
    
     </div>`
 
+    qtdPerguntasGlobal = document.getElementById('input3').value;
+    
+
 }
 
 function telaCriaQuizz2(){
-
+    
     //ESSA FUNCAO ESTA RENDIRIZANDO A PROXIMA PAGINA DE CRIACAO COM OS VALORES DINAMICOS RECEBIDOS DO INPUT DA TELA ANTERIOR.
+    
     const inputTitulo = document.getElementById('input1').value;
     const inputURL = document.getElementById('input2').value;
     const inputQtdPerguntas = document.getElementById('input3').value;
@@ -225,7 +214,6 @@ function telaCriaQuizz2(){
     return qtdNiveis = inputQtdNiveis;
 }
 
-
 function telaCriarPerguntas(qtdPerguntas){
    // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DAS PERGUNTAS.
     const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
@@ -249,37 +237,114 @@ function telaCriarPerguntas(qtdPerguntas){
                     </div>
 
                     <section class="inputsPerguntas escondido">
-                        <input class="inputCriacaoPerguntas" type="text" placeholder="Texto da pergunta">
-                        <input class="inputCriacaoPerguntas" type="text" placeholder="Cor de fundo da pergunta">
+                        <input class="inputCriacaoPerguntas" type="text" id="textoPergunta${i+1}" placeholder="Texto da pergunta">
+                        <input class="inputCriacaoPerguntas" type="text" id="cordeFundo${i+1}" placeholder="Cor de fundo da pergunta">
                         
                         <h4>Resposta Correta</h4>
-                        <input class="inputCriacaoPerguntas" type="text" placeholder="Resposta Correta">
-                        <input class="inputCriacaoPerguntas" type="url" placeholder="URL da imagem">
+                        <input class="inputCriacaoPerguntas" type="text" id="respostaCorreta${i+1}" placeholder="Resposta Correta">
+                        <input class="inputCriacaoPerguntas" type="url" id="urlImagem${i+1}" placeholder="URL da imagem">
 
                         <h4>Respostas Incorretas</h4>
-                        <input class="inputCriacaoPerguntas" type="text" placeholder="Resposta Incorreta 1">
-                        <input class="inputCriacaoPerguntas" type="url" placeholder="URL da imagem 1">
+                        <input class="inputCriacaoPerguntas" type="text" id="incorretaA${i+1}" placeholder="Resposta Incorreta 1">
+                        <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaA${i+1}" placeholder="URL da imagem 1">
                         
-                        <input class="inputCriacaoPerguntas" type="text" placeholder="Resposta Incorreta 2">
-                        <input class="inputCriacaoPerguntas" type="url" placeholder="URL da imagem 2">
+                        <input class="inputCriacaoPerguntas" type="text" id="incorretaB${i+1}" placeholder="Resposta Incorreta 2">
+                        <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaB${i+1}" placeholder="URL da imagem 2">
                         
-                        <input class="inputCriacaoPerguntas" type="text" placeholder="Resposta Incorreta 3">
-                        <input class="inputCriacaoPerguntas" type="url" placeholder="URL da imagem 3">
+                        <input class="inputCriacaoPerguntas" type="text" id="incorretaC${i+1}" placeholder="Resposta Incorreta 3">
+                        <input class="inputCriacaoPerguntas" type="url" id="urlIncorretaC${i+1}" placeholder="URL da imagem 3">
                     </section>
                        
                 </div>
             </div>`
     }
 
-        perguntas.innerHTML += `<button class="btn-criarquizz" onclick="decidindoNiveis()">Prosseguir para criar Níveis</button>
+        perguntas.innerHTML += `<button class="btn-criarquizz" onclick="validandoPerguntas(${qtdPerguntas})">Prosseguir para criar Níveis</button>
         <h7 onclick="voltaTelaInicial()">VOLTAR A TELA INICIAL QUIZZ</h7>`
         
+}
+function validandoPerguntas(qtdPerguntas){
+
+    let controleA, controleB, controleC = false;
+    let verificaDados = 0;
+
+    for (let i=0;i<qtdPerguntas; i++){
+        
+        const textoPergunta = document.getElementById(`textoPergunta${i+1}`).value;
+        const cordeFundo = document.getElementById(`cordeFundo${i+1}`).value;
+        const respostaCorreta = document.getElementById(`respostaCorreta${i+1}`).value;
+        const urlImagem = document.getElementById(`urlImagem${i+1}`).value;
+    
+        // RESPOSTAS INCORRETAS AGORA...
+        const respostaIncorreta1 = document.getElementById(`incorretaA${i+1}`).value;
+        const urlIncorreta1 = document.getElementById(`urlIncorretaA${i+1}`).value;
+    
+        const respostaIncorreta2 = document.getElementById(`incorretaB${i+1}`).value;
+        const urlIncorreta2 = document.getElementById(`urlIncorretaB${i+1}`).value;
+    
+        const respostaIncorreta3 = document.getElementById(`incorretaC${i+1}`).value;
+        const urlIncorreta3 = document.getElementById(`urlIncorretaC${i+1}`).value;
+
+        if (textoPergunta.length < 20){
+            alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
+            Por favor entre com o texto de forma correta (MINIMO 20 CARACTERES)`);
+        } else verificaDados ++;
+        if (cordeFundo.length !== 6){
+            alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
+           ENTRE COM UM VALOR DE COR VALIDO (LETRAS DE A - F *MAX 6 CARACTERES*)`);
+        }else verificaDados ++;
+        if (respostaCorreta == ''){
+            alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
+           ENTRE COM UM VALOR VALIDO PARA O TEXTO DA RESPOSTA...`);
+        } else verificaDados ++;
+         if (!urlImagem.match(regex)){   
+            alert(`VOCÊ ESTA COM PROBLEMAS NA PERGUNTA > ${i+1} \n \n
+            Por favor entre com um valor valido de URL de IMAGEM...`);
+        }else verificaDados ++;
+
+        //iniciando o teste boleano.
+        if(respostaIncorreta1.length > 0) {
+            controleA = true;  
+        }
+        if (controleA){
+            if (!urlIncorreta1.match(regex)){   
+                alert(`VOCÊ ESTA COM PROBLEMAS NA URL DA RESPOSTA ERRADA > ${i+1} \n \n
+                Por favor entre com um valor valido de URL de IMAGEM...`);
+            }
+        } 
+        if(respostaIncorreta2.length > 0) {
+            controleB = true;  
+        }
+        if (controleB){
+            if (!urlIncorreta2.match(regex)){   
+                alert(`VOCÊ ESTA COM PROBLEMAS NA URL DA RESPOSTA ERRADA > ${i+2} \n \n
+                Por favor entre com um valor valido de URL de IMAGEM...`);
+            }
+        }
+        if(respostaIncorreta3.length > 0) {
+            controleC = true;  
+        }
+        if (controleC){
+            if (!urlIncorreta3.match(regex)){   
+                alert(`VOCÊ ESTA COM PROBLEMAS NA URL DA RESPOSTA ERRADA > ${i+3} \n \n
+                Por favor entre com um valor valido de URL de IMAGEM...`);
+            }
+        }
+
+        if (((controleA) || (controleB) || (controleC)) && verificaDados == qtdPerguntas*4){
+            console.log('Parabens passou tem todas as etapas, agora vou chamar os niveis para preenchimento.')
+            decidindoNiveis(controleA);
+        }
+
+}
+ 
+
+
 }
 
 function decidindoNiveis(){
     // AQUI ESTAMOS INDO PARA A PAGINA DE DEFINICAO DOS NIVEIS.
      
-     console.log(qtdNiveis);
      const sectionCriaQuizz = document.querySelector('.sectionCriarQuizz');
      sectionCriaQuizz.innerHTML = ' ';
      sectionCriaQuizz.classList.remove('escondido');
@@ -374,7 +439,7 @@ function quizzFinalizado(){
 
     perguntas.innerHTML = `<h7> PARABENS VC CONSEGUIU COM SUCESSO BOLODINHO.`
 
-    
+
 
 
 }
