@@ -113,7 +113,6 @@ function trocaDeEscondidos () {
 }
 
 function colocarNoDom (response) {
-    console.log(response.data);
     let parametro = response.data
     let perguntas = "";
 
@@ -135,16 +134,18 @@ function colocarNoDom (response) {
 
         //Já colocamos o titulo geral do questionário agora escreveremos cada pergunta com as suas respostas aleatórias
         perguntas += 
-        `<div class="pergunta1">
+        `
+        <div class="pergunta1">
         <div class="titulopergunta opaco" style="background-color: ${perguntaAtual.color};">
             <span>${perguntaAtual.title}</span>
         </div>`;
-        for (let i = 0; i < arrayRespostas_Numero.length; i++) {
+        for (let t = 0; t < arrayRespostas_Numero.length; t++) {
             
             perguntas += `
-            <div class="resposta" onclick="clicarResposta(this, ${arrayRespostas_Numero[i].isCorrectAnswer}, ${arrayRespostas_Numero[i]})">
-                <img src="${arrayRespostas_Numero[i].image}" alt="Imagem carregando" class="imgRespostas">
-                <h6>${arrayRespostas_Numero[i].text}</h6>
+            
+            <div class="resposta" onclick="clicarResposta(this, ${arrayRespostas_Numero[t].isCorrectAnswer})">
+                <img src="${arrayRespostas_Numero[t].image}" alt="Imagem carregando" class="imgRespostas">
+                <h6>${arrayRespostas_Numero[t].text}</h6>
             </div>`;
             
         }
@@ -456,16 +457,16 @@ function expandirPergunta(id){
 
 function clicarResposta (elemento, condicional) {
    let elementoPai = elemento.parentNode;
-    elementoPai.classList.add("esbranquicado");
-    console.log(elementoPai);
+    elementosFilhos = elementoPai.childNodes;
+    console.log(elementosFilhos);
+
+    for(let i = 3; i < elementosFilhos.length; i = i + 2){
+        console.log(i);
+        elementosFilhos[i].classList.add("esbranquicado"); 
+    }
     
-    let procura = document.querySelector(".esbranquicado").querySelectorAll(".resposta");
-    procura.classList.add("esbranquicado");
-
 
     
-
-
     if(condicional === true) {
     elemento.classList.add("correto");
     elemento.classList.add("opaco");
