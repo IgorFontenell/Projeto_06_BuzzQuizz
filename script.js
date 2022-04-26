@@ -145,7 +145,7 @@ function colocarNoDom (response) {
         for (let i = 0; i < arrayRespostas_Numero.length; i++) {
             console.log(arrayRespostas_Numero);
             perguntas += `
-            <div class="resposta">
+            <div class="resposta" onclick="clicarResposta(this,${arrayRespostas_Numero[i].isCorrectAnswer})">
                 <img src="${arrayRespostas_Numero[i].image}" alt="Imagem carregando" class="imgRespostas">
                 <h6>${arrayRespostas_Numero[i].text}</h6>
             </div>`;
@@ -380,6 +380,12 @@ function expandirPergunta(id){
     iconeClicado.classList.toggle('escondido');
 }
 
+function clicarResposta (element, condicional) {
+console.log(element);
+console.log(condicional);
+
+
+}
 
 
 
